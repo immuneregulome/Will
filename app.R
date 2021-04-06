@@ -10,7 +10,6 @@ library(gridGraphics)
 library(ggpubr)
 library(writexl)
 
-##this is a test
 
 ###load data
 nk_data <- get(load(file = "data/nk_integrated_labeled.Rdata"))
