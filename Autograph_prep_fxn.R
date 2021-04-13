@@ -44,6 +44,14 @@ AutoGraph_prep <- function(file_path, sample_table_path, CD45_Phrase, CD45Hi_Phr
   #Get rid of any numbers over 100 that were created by normalization
   data[8:9] <- lapply(data[8:9], function(x) ifelse(x>100.1, NA, x))
 
+  #Get rid of any normalized values for the CD45 High normalized that
+  # shouldn't be getting normalized
+  for (i in 1:nrow(data)) {
+  if (str_contains(data[i, 3], "CD45 High") == FALSE) {
+    data[i, 9] <- NA
+    }
+  }
+
   #reorganize the dataframe into the desired format
   data <- data[, c("Genotype", "Age", "Name", "X", "Percentage.of.Parent", "Total.Cell.Number",
                    "CD45_norm", "CD45Hi_norm")]
